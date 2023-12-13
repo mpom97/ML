@@ -45,10 +45,10 @@ best_rf_model = grid_search.best_estimator_
 
 # 최적의 RandomForest 모델을 기반으로 AdaBoost 모델을 훈련한다.
 ada_param_grid = {
-    'n_estimators': [50, 100],
-    'learning_rate': [0.01, 0.1, 0.2],
+    'n_estimators': [100],
+    'learning_rate': [0.01],
 }
-ada_model = AdaBoostClassifier(base_estimator=best_rf_model)
+ada_model = AdaBoostClassifier(estimator=best_rf_model)
 ada_grid_search = GridSearchCV(ada_model, param_grid=ada_param_grid, scoring='roc_auc', cv=5)
 ada_grid_search.fit(X_train_scaled_df, y_train)
 
